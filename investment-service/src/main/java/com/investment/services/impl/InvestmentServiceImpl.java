@@ -34,7 +34,7 @@ public class InvestmentServiceImpl implements InvestmentService {
         var remainCash = investmentDTO.getCash();
         var funds = investmentDTO.getFunds();
         var strategyName = investmentDTO.getStrategyName();
-        Strategy strategy = strategyDAO.getByName(strategyName);
+        var strategy = strategyDAO.getByName(strategyName);
 
         List<Result> allResults = new ArrayList<>();
 
