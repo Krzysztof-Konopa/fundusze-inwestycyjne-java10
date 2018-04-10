@@ -7,16 +7,20 @@
     <groupId>com.fundusze</groupId>
     <artifactId>fundusze</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>investment-service</module>
+        <module>strategy-provider</module>
+    </modules>
 
     <properties>
         <java.ver>1.10</java.ver>
-        <spring.boot.ver>2.0.0.RELEASE</spring.boot.ver>
+        <spring.boot.ver>2.0.1.RELEASE</spring.boot.ver>
         <spring.ver>5.0.4.RELEASE</spring.ver>
         <google.ver>1.0</google.ver>
         <junit.jupiter.version>5.1.0</junit.jupiter.version>
         <junit.vintage.version>5.1.0</junit.vintage.version>
-        <junit.platform.version>1.1.0</junit.platform.version>
     </properties>
 
     <parent>
@@ -42,11 +46,6 @@
             <artifactId>spring-tx</artifactId>
             <version>${spring.ver}</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.collections</groupId>
-            <artifactId>google-collections</artifactId>
-            <version>${google.ver}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -63,28 +62,35 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <source>${java.ver}</source>
+                        <target>${java.ver}</target>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>6.1.1</version> <!-- Use newer version of ASM -->
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                    <source>${java.ver}</source>
-                    <target>${java.ver}</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.21.0</version>
+                <version>2.19.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.junit.platform</groupId>
                         <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>${junit.platform.version}</version>
+                        <version>1.1.0</version>
                     </dependency>
                 </dependencies>
             </plugin>

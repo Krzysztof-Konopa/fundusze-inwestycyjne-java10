@@ -17,7 +17,7 @@ mvn clean install
 ### RUN ###
 Run from project root directory:
 
-java -jar target/fundusze-1.0-SNAPSHOT.jar
+java -jar investment-service/target/investment-service-1.0-SNAPSHOT.jar
 
 navigate to localhost:8080/ in your browser
 
